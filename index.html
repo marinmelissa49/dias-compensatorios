@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Días Compensatorios</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding:20px;
+        }
+
+        .card{
+            border:1px solid #ccc;
+            border-radius:10px;
+            padding:20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Tienes días compensatorios asignados</h1>
+
+    <p>Información visible para un sitio web:</p>
+
+    <ul>
+        <li><strong>Fecha:</strong> <span id="fecha"></span></li>
+        <li><strong>Sistema operativo:</strong> <span id="os"></span></li>
+        <li><strong>Navegador:</strong> <span id="browser"></span></li>
+        <li><strong>Resolución:</strong> <span id="screen"></span></li>
+    </ul>
+
+    <hr>
+
+    <h2>¿Te sorprendió?</h2>
+
+    <p>
+        Esta información puede ser obtenida por muchos sitios web
+        sin que ingreses ningún dato.
+    </p>
+
+    <p>
+        Antes de escanear un código QR o abrir un enlace,
+        verifica siempre que provenga de una fuente confiable.
+    </p>
+</div>
+
+<script>
+
+document.getElementById("fecha").innerText =
+new Date().toLocaleString();
+
+document.getElementById("screen").innerText =
+screen.width + " x " + screen.height;
+
+document.getElementById("browser").innerText =
+navigator.userAgent;
+
+let os = "Desconocido";
+
+if (navigator.userAgent.indexOf("Windows") !== -1)
+    os = "Windows";
+
+if (navigator.userAgent.indexOf("Mac") !== -1)
+    os = "MacOS";
+
+if (navigator.userAgent.indexOf("Linux") !== -1)
+    os = "Linux";
+
+if (navigator.userAgent.indexOf("Android") !== -1)
+    os = "Android";
+
+if (navigator.userAgent.indexOf("iPhone") !== -1)
+    os = "iPhone";
+
+document.getElementById("os").innerText = os;
+
+</script>
+
+</body>
+</html>
