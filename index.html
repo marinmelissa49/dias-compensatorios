@@ -1,83 +1,329 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <title>Días Compensatorios</title>
-    <style>
-        body{
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 50px auto;
-            padding:20px;
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Compensatorios | Makro</title>
+
+```
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f4f4f4;
+        color: #333;
+    }
+
+    .header {
+        background: #E30613;
+        padding: 25px;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,.15);
+    }
+
+    .logo {
+        max-width: 280px;
+        width: 100%;
+        height: auto;
+    }
+
+    .container {
+        max-width: 850px;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    .card {
+        background: white;
+        border-radius: 12px;
+        padding: 40px;
+        box-shadow: 0 4px 20px rgba(0,0,0,.12);
+        border-top: 8px solid #E30613;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    h1 {
+        color: #E30613;
+        margin-bottom: 20px;
+    }
+
+    p {
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    .loader {
+        width: 70px;
+        height: 70px;
+        border: 7px solid #ececec;
+        border-top: 7px solid #E30613;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 30px auto;
+    }
+
+    @keyframes spin {
+        100% {
+            transform: rotate(360deg);
         }
+    }
+
+    .loading-text {
+        color: #666;
+        font-size: 17px;
+        margin-top: 15px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .status-box {
+        background: #f8f8f8;
+        border-left: 5px solid #E30613;
+        padding: 15px;
+        margin-top: 20px;
+        border-radius: 5px;
+        font-size: 15px;
+    }
+
+    .info-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 25px;
+    }
+
+    .info-table td {
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .info-table td:first-child {
+        font-weight: bold;
+        width: 40%;
+    }
+
+    .warning-box {
+        background: #FFF7E6;
+        border-left: 5px solid #FFB300;
+        padding: 20px;
+        margin-top: 25px;
+        border-radius: 5px;
+    }
+
+    .security-box {
+        background: #FFF1F1;
+        border-left: 5px solid #E30613;
+        padding: 20px;
+        margin-top: 25px;
+        border-radius: 5px;
+    }
+
+    .footer {
+        text-align: center;
+        color: #777;
+        font-size: 13px;
+        margin-top: 25px;
+    }
+
+    @media(max-width:768px){
 
         .card{
-            border:1px solid #ccc;
-            border-radius:10px;
-            padding:20px;
+            padding:25px;
         }
-    </style>
+
+        h1{
+            font-size:28px;
+        }
+
+        .logo{
+            max-width:220px;
+        }
+    }
+</style>
+```
+
 </head>
+
 <body>
 
-<div class="card">
-    <h1>Tienes días compensatorios asignados</h1>
+```
+<div class="header">
+    <img src="logo-makro.jpg" class="logo" alt="Makro">
+</div>
 
-    <p>Información visible para un sitio web:</p>
+<div class="container">
 
-    <ul>
-        <li><strong>Fecha:</strong> <span id="fecha"></span></li>
-        <li><strong>Sistema operativo:</strong> <span id="os"></span></li>
-        <li><strong>Navegador:</strong> <span id="browser"></span></li>
-        <li><strong>Resolución:</strong> <span id="screen"></span></li>
-    </ul>
+    <div class="card">
 
-    <hr>
+        <div id="welcome">
 
-    <h2>¿Te sorprendió?</h2>
+            <div class="center">
 
-    <p>
-        Esta información puede ser obtenida por muchos sitios web
-        sin que ingreses ningún dato.
-    </p>
+                <h1>🎉 ¡Felicitaciones!</h1>
 
-    <p>
-        Antes de escanear un código QR o abrir un enlace,
-        verifica siempre que provenga de una fuente confiable.
-    </p>
+                <p>
+                    Hemos identificado que tienes un día compensatorio pendiente de asignación.
+                </p>
+
+                <p>
+                    Estamos validando la disponibilidad de tu beneficio.
+                </p>
+
+                <div class="loader"></div>
+
+                <div class="loading-text" id="loadingText">
+                    Validando disponibilidad...
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="reveal" class="hidden">
+
+            <h1>⚠️ Esta era una simulación</h1>
+
+            <p>
+                Antes de solicitar cualquier información, esta página pudo identificar automáticamente algunos datos técnicos de tu dispositivo:
+            </p>
+
+            <table class="info-table">
+
+                <tr>
+                    <td>Sistema Operativo</td>
+                    <td id="os"></td>
+                </tr>
+
+                <tr>
+                    <td>Navegador</td>
+                    <td id="browser"></td>
+                </tr>
+
+                <tr>
+                    <td>Resolución de Pantalla</td>
+                    <td id="resolution"></td>
+                </tr>
+
+                <tr>
+                    <td>Fecha y Hora de Acceso</td>
+                    <td id="datetime"></td>
+                </tr>
+
+            </table>
+
+            <div class="warning-box">
+
+                <strong>¿Te sorprendió?</strong>
+
+                <p style="margin-top:10px;">
+                    Muchos sitios web pueden recopilar información técnica de tu dispositivo sin que ingreses ningún dato.
+                </p>
+
+            </div>
+
+            <div class="security-box">
+
+                <strong>Campaña de Concienciación en Seguridad de la Información</strong>
+
+                <p style="margin-top:10px;">
+                    Antes de escanear códigos QR o acceder a enlaces, verifica siempre que provengan de fuentes confiables.
+                </p>
+
+                <p>
+                    La seguridad de la información comienza con cada clic.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Uso interno • Campaña de Concienciación
+    </div>
+
 </div>
 
 <script>
 
-document.getElementById("fecha").innerText =
-new Date().toLocaleString();
+    function detectOS() {
 
-document.getElementById("screen").innerText =
-screen.width + " x " + screen.height;
+        const ua = navigator.userAgent;
 
-document.getElementById("browser").innerText =
-navigator.userAgent;
+        if (ua.includes("Windows")) return "Windows";
+        if (ua.includes("Android")) return "Android";
+        if (ua.includes("iPhone")) return "iPhone / iOS";
+        if (ua.includes("Mac")) return "MacOS";
+        if (ua.includes("Linux")) return "Linux";
 
-let os = "Desconocido";
+        return "No identificado";
+    }
 
-if (navigator.userAgent.indexOf("Windows") !== -1)
-    os = "Windows";
+    function detectBrowser() {
 
-if (navigator.userAgent.indexOf("Mac") !== -1)
-    os = "MacOS";
+        const ua = navigator.userAgent;
 
-if (navigator.userAgent.indexOf("Linux") !== -1)
-    os = "Linux";
+        if (ua.includes("Edg")) return "Microsoft Edge";
+        if (ua.includes("Chrome")) return "Google Chrome";
+        if (ua.includes("Firefox")) return "Mozilla Firefox";
+        if (ua.includes("Safari") && !ua.includes("Chrome")) return "Safari";
 
-if (navigator.userAgent.indexOf("Android") !== -1)
-    os = "Android";
+        return "No identificado";
+    }
 
-if (navigator.userAgent.indexOf("iPhone") !== -1)
-    os = "iPhone";
+    document.getElementById("os").innerText = detectOS();
 
-document.getElementById("os").innerText = os;
+    document.getElementById("browser").innerText = detectBrowser();
+
+    document.getElementById("resolution").innerText =
+        screen.width + " x " + screen.height;
+
+    document.getElementById("datetime").innerText =
+        new Date().toLocaleString('es-CO');
+
+    const mensajes = [
+        "Validando disponibilidad...",
+        "Consultando beneficios asignados...",
+        "Generando certificado de compensatorio..."
+    ];
+
+    let indice = 0;
+
+    const intervalo = setInterval(() => {
+
+        indice++;
+
+        if(indice < mensajes.length){
+            document.getElementById("loadingText").innerText = mensajes[indice];
+        }
+
+    }, 1700);
+
+    setTimeout(() => {
+
+        clearInterval(intervalo);
+
+        document.getElementById("welcome").style.display = "none";
+
+        document.getElementById("reveal").classList.remove("hidden");
+
+    }, 5500);
 
 </script>
+```
 
 </body>
 </html>
+
