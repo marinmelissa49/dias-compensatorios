@@ -1,0 +1,9 @@
+url's imágenes campaña phishing:
+
+Logo Makro: https://raw.githubusercontent.com/marinmelissa49/dias-compensatorios/a07090c7dfe71ac539178c1639884451c559b87f/logo.png
+
+encabezado: https://raw.githubusercontent.com/marinmelissa49/dias-compensatorios/6f6265050e9ece68d108e50e2e06ea268ea36c21/encabezado.png
+
+footer: https://raw.githubusercontent.com/marinmelissa49/dias-compensatorios/6f6265050e9ece68d108e50e2e06ea268ea36c21/final%20correo.png
+
+flyer: https://raw.githubusercontent.com/marinmelissa49/dias-compensatorios/6f6265050e9ece68d108e50e2e06ea268ea36c21/campa%C3%B1a%20phishing.PNG
