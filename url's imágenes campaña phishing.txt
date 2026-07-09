@@ -6,4 +6,4 @@ encabezado: https://raw.githubusercontent.com/marinmelissa49/dias-compensatorios
 
 footer: https://raw.githubusercontent.com/marinmelissa49/dias-compensatorios/6f6265050e9ece68d108e50e2e06ea268ea36c21/final%20correo.png
 
-flyer: //raw.githubusercontent.com/marinmelissa49/dias-compensatorios/c8a87e558e92a3e72222becf370334696f14fe01/campa%C3%B1a%20phishing.png
+flyer: https://raw.githubusercontent.com/marinmelissa49/dias-compensatorios/46fa6f455fec0ceabbe64b66c430054e6679133d/campa%C3%B1a%20phishing.png
